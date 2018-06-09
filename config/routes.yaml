@@ -1,0 +1,5 @@
+get_blog_posts:
+    path: /blog/posts
+    controller: App\Controller\PostController::getBlogPosts
+    requirements:
+        method: GET
