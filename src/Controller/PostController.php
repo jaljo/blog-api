@@ -13,7 +13,6 @@ use Exception;
 class PostController extends Controller
 {
     /**
-     * @todo fetch data from database
      * @return JsonResponse
      */
     public function getBlogPosts(): JsonResponse
