@@ -29,7 +29,7 @@ class PostDAO implements IDAO
     public function findAll(): array
     {
         $conn = $this->connection->getConnection();       
-        $query = $conn->query("SELECT * FROM post;");
+        $query = $conn->query("SELECT * FROM post ORDER BY date_creation DESC;");
         $blogPosts = $query->fetchAll();
         
         return $blogPosts;        
