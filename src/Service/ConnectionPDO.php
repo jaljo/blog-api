@@ -14,22 +14,22 @@ class ConnectionPDO implements IConnection
      * @var string
      */
     private $dsn;
-    
+
     /**
      * @var string
-     */    
+     */
     private $username;
-    
+
     /**
      * @var string
-     */    
+     */
     private $password;
-    
+
     /**
      * @var array
-     */    
+     */
     private $options;
-    
+
     /**
      * @param string $dsn
      * @param string $username
@@ -42,7 +42,7 @@ class ConnectionPDO implements IConnection
         $this->password = $password;
         $this->options = [PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8'];
     }
-    
+
     /**
      * @return PDO
      */
@@ -50,7 +50,7 @@ class ConnectionPDO implements IConnection
     {
         $pdo = new PDO($this->dsn, $this->username, $this->password, $this->options);
         $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
-        
-        return $pdo;            
+
+        return $pdo;
     }
 }

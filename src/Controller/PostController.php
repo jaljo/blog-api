@@ -19,11 +19,11 @@ class PostController extends Controller
     {
         try{
             $postDao = $this->get(PostDAO::class);
-            $blogPosts = $postDao->findAll();           
-            
+            $blogPosts = $postDao->findAll();
+
             return new JsonResponse($blogPosts);
         }
-        catch(Exception $exception) {            
+        catch(Exception $exception) {
             return new JsonResponse(["error" => $exception->getMessage()]);
         }
     }

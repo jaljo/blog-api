@@ -11,10 +11,10 @@ use App\Service\IConnection;
 class PostDAO implements IDAO
 {
     /**
-     * @var IConnection 
+     * @var IConnection
      */
     private $connection;
-    
+
     /**
      * @param IConnection $connection
      */
@@ -22,16 +22,16 @@ class PostDAO implements IDAO
     {
         $this->connection = $connection;
     }
-    
+
     /**
      * @return array
      */
     public function findAll(): array
     {
-        $conn = $this->connection->getConnection();       
+        $conn = $this->connection->getConnection();
         $query = $conn->query("SELECT * FROM post ORDER BY date_creation DESC;");
         $blogPosts = $query->fetchAll();
-        
-        return $blogPosts;        
+
+        return $blogPosts;
     }
 }
