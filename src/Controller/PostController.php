@@ -27,4 +27,20 @@ class PostController extends Controller
             return new JsonResponse(["error" => $exception->getMessage()]);
         }
     }
+
+    /**
+     * @return JsonResponse
+     */
+    public function getBlogPost(string $seoTitle): JsonResponse
+    {
+      try{
+          $postDao = $this->get(PostDAO::class);
+          $blogPost = $postDao->find($seoTitle);
+
+          return new JsonResponse($blogPost);
+      }
+      catch(Exception $exception) {
+          return new JsonResponse(["error" => $exception->getMessage()]);
+      }
+    }
 }

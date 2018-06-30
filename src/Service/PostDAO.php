@@ -4,6 +4,7 @@ namespace App\Service;
 
 use App\Service\IDAO;
 use App\Service\IConnection;
+use Exception;
 
 /**
  * @author jlanglois
@@ -20,7 +21,7 @@ class PostDAO implements IDAO
      */
     public function __construct(IConnection $connection)
     {
-        $this->connection = $connection;
+        $this->connection = $connection->getConnection();
     }
 
     /**
@@ -28,10 +29,31 @@ class PostDAO implements IDAO
      */
     public function findAll(): array
     {
-        $conn = $this->connection->getConnection();
-        $query = $conn->query("SELECT * FROM post ORDER BY date_creation DESC;");
+        $query = $this->connection->query(
+          "SELECT * FROM post WHERE draft = 0 ORDER BY date_creation DESC;"
+        );
         $blogPosts = $query->fetchAll();
 
         return $blogPosts;
+    }
+
+    /**
+     * @return array
+     * @throws Exception
+     */
+    public function find(string $seoTitle): array
+    {
+      $query = $this->connection->prepare(
+        "SELECT * FROM post WHERE seo_title = :seo_title;"
+      );
+      $query->execute([":seo_title" => $seoTitle]);
+
+      $blogPost = $query->fetch();
+
+      if (!$blogPost) {
+        throw new Exception("No blog post found !");
+      }
+
+      return $blogPost;
     }
 }
