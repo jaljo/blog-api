@@ -3,3 +3,10 @@ get_blog_posts:
     controller: App\Controller\PostController::getBlogPosts
     requirements:
         method: GET
+
+get_blog_post:
+    path: /blog/posts/{seoTitle}
+    controller: App\Controller\PostController::getBlogPost
+    requirements:
+        method: GET
+        seoTitle: \w+
