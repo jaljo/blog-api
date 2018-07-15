@@ -9,4 +9,4 @@ get_blog_post:
     controller: App\Controller\PostController::getBlogPost
     requirements:
         method: GET
-        seoTitle: \w+
+        seoTitle: '[a-z\-]+'
