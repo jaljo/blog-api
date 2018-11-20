@@ -9,34 +9,28 @@ use Exception;
 
 class PostController extends Controller
 {
-    /**
-     * @return JsonResponse
-     */
     public function getBlogPosts(): JsonResponse
     {
-        try{
+        try {
             $postDao = $this->get(PostDAO::class);
             $blogPosts = $postDao->findAll();
 
             return new JsonResponse($blogPosts);
         }
-        catch(Exception $exception) {
+        catch (Exception $exception) {
             return new JsonResponse(["error" => $exception->getMessage()]);
         }
     }
 
-    /**
-     * @return JsonResponse
-     */
     public function getBlogPost(string $seoTitle): JsonResponse
     {
-      try{
+      try {
           $postDao = $this->get(PostDAO::class);
           $blogPost = $postDao->find($seoTitle);
 
           return new JsonResponse($blogPost);
       }
-      catch(Exception $exception) {
+      catch (Exception $exception) {
           return new JsonResponse(["error" => $exception->getMessage()]);
       }
     }

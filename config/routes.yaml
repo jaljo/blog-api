@@ -10,3 +10,7 @@ get_blog_post:
     requirements:
         method: GET
         seoTitle: '[a-z\-]+'
+
+test:
+    path: /test
+    controller: App\Controller\PostController::test

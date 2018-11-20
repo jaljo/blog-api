@@ -1,13 +1,12 @@
 version: '3.7'
 services:
   mysql:
-    image: mysql:8.0
+    image: mysql:5.7
     restart: on-failure
     environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: blog_api
-      MYSQL_USER: blogapi
-      MYSQL_PASSWORD: blogapi
+      - MYSQL_USER=root
+      - MYSQL_ROOT_PASSWORD=
+      - MYSQL_ALLOW_EMPTY_PASSWORD=yes
   nginx:
     image: nginx:1.15.3-alpine
     restart: on-failure
