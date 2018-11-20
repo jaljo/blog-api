@@ -9,12 +9,6 @@ use Exception;
 
 class PostController extends Controller
 {
-    public function test()
-    {
-      $postDao = $this->get(PostDAO::class);
-      exit;
-    }
-
     /**
      * @return JsonResponse
      */
