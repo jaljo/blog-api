@@ -1,5 +1,4 @@
-version:  '3.7'
-
+version: '3.7'
 services:
   mysql:
     image: mysql:8.0
@@ -7,21 +6,28 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: blog_api
+      MYSQL_USER: blogapi
+      MYSQL_PASSWORD: blogapi
   nginx:
     image: nginx:1.15.3-alpine
     restart: on-failure
+    # mount the content of the local apps/test directory into the container /usr/src/app directory
     volumes:
-      - ./apps/blog-api/public/:/usr/src/app
-      - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./apps/blog-api/public:/usr/src/app
+      - ./.docker/nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
     ports:
-      - 80:80
+      - '80:80'
+    # the nginx container must be built and run after the php one
     depends_on:
       - php
   php:
     build:
+      # look for Docker file from the current directory
       context: .
-      dockerfile: docker/php/Dockerfile
+      dockerfile: .docker/php/Dockerfile
     restart: on-failure
     env_file:
       - .env
+    # both container and local system will interact with files (through the volume)
+    # with the exact same user (uid) and that will prevent to have permission related issues
     user: 1000:1000

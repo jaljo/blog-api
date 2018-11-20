@@ -5,9 +5,6 @@ namespace App\Service;
 use App\Service\IConnection;
 use PDO;
 
-/**
- * @author jlanglois
- */
 class ConnectionPDO implements IConnection
 {
     /**
@@ -37,6 +34,10 @@ class ConnectionPDO implements IConnection
      */
     public function __construct(string $dsn, string $username, string $password)
     {
+echo $dsn;
+echo $username;
+echo $password;
+
         $this->dsn = $dsn;
         $this->username = $username;
         $this->password = $password;

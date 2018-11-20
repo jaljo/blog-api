@@ -7,11 +7,14 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use App\Service\PostDAO;
 use Exception;
 
-/**
- * @author jlanglois
- */
 class PostController extends Controller
 {
+    public function test()
+    {
+      $postDao = $this->get(PostDAO::class);
+      exit;
+    }
+
     /**
      * @return JsonResponse
      */

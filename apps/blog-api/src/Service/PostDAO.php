@@ -6,9 +6,6 @@ use App\Service\IDAO;
 use App\Service\IConnection;
 use Exception;
 
-/**
- * @author jlanglois
- */
 class PostDAO implements IDAO
 {
     /**
