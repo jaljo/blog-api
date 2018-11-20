@@ -5,36 +5,20 @@ namespace App\Service;
 use App\Service\IConnection;
 use PDO;
 
-/**
- * @author jlanglois
- */
 class ConnectionPDO implements IConnection
 {
-    /**
-     * @var string
-     */
+    /** @var string */
     private $dsn;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     private $username;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     private $password;
 
-    /**
-     * @var array
-     */
+    /** @var array */
     private $options;
 
-    /**
-     * @param string $dsn
-     * @param string $username
-     * @param string $password
-     */
     public function __construct(string $dsn, string $username, string $password)
     {
         $this->dsn = $dsn;
@@ -43,9 +27,6 @@ class ConnectionPDO implements IConnection
         $this->options = [PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8'];
     }
 
-    /**
-     * @return PDO
-     */
     public function getConnection(): PDO
     {
         $pdo = new PDO($this->dsn, $this->username, $this->password, $this->options);

@@ -6,27 +6,16 @@ use App\Service\IDAO;
 use App\Service\IConnection;
 use Exception;
 
-/**
- * @author jlanglois
- */
 class PostDAO implements IDAO
 {
-    /**
-     * @var IConnection
-     */
+    /** @var IConnection */
     private $connection;
 
-    /**
-     * @param IConnection $connection
-     */
     public function __construct(IConnection $connection)
     {
         $this->connection = $connection->getConnection();
     }
 
-    /**
-     * @return array
-     */
     public function findAll(): array
     {
         $query = $this->connection->query(
@@ -37,10 +26,6 @@ class PostDAO implements IDAO
         return $blogPosts;
     }
 
-    /**
-     * @return array
-     * @throws Exception
-     */
     public function find(string $seoTitle): array
     {
       $query = $this->connection->prepare(
