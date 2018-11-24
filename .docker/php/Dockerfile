@@ -20,6 +20,6 @@ WORKDIR /usr/src/app
 
 # hard copy files for production environment
 # these will be overidden by the 'volume' directive in the docker-compose.yml
-COPY apps/blog-api /usr/src/app
+COPY . /usr/src/app
 
 RUN PATH=$PATH:/usr/src/apps/vendor/bin:bin
