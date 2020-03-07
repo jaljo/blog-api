@@ -25,6 +25,6 @@ COPY ./ /app/
 RUN composer install --prefer-dist --no-scripts --no-dev \
     && composer clear-cache
 
-RUN php -d display_errors=on bin/console cache:warmup --env=prod
+# RUN php -d display_errors=on bin/console cache:warmup --env=prod
 
 CMD ["php-fpm"]

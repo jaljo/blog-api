@@ -31,7 +31,7 @@ cp-env:
 
 .PHONY:
 install-deps:
-	docker-compose -f ./docker-compose.$(STAGE).yml run --rm php composer install
+	docker-compose -f ./docker-compose.$(STAGE).yml run --rm api_php composer install
 
 .PHONY:
 start:
