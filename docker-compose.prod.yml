@@ -1,8 +1,8 @@
 version: '3.7'
 
 services:
-  mysql:
-    image: quay.io/knplabs/keskonmange-api:mysql-${IMAGE_TAG}
+  api_mysql:
+    image: jaljo/blog_api:api_mysql-${IMAGE_TAG}
     build:
       context: .
       dockerfile: .docker/mysql/Dockerfile
@@ -11,31 +11,31 @@ services:
       - MYSQL_USER=root
       - MYSQL_ROOT_PASSWORD=
       - MYSQL_ALLOW_EMPTY_PASSWORD=yes
-      - MYSQL_DATABASE=keskonmange
+
     networks:
      - internal
 
-  app:
-    image: quay.io/knplabs/keskonmange-api:app-${IMAGE_TAG}
+  api_nginx:
+    image: jaljo/blog_api:api_nginx-${IMAGE_TAG}
     build:
       context: .
       dockerfile: .docker/nginx/Dockerfile
     restart: on-failure
     depends_on:
-      - php
+      - api_php
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.app.rule=Host(`api.keskonmange.knpnet.net`)"
-      - "traefik.http.routers.app.entrypoints=web"
-      - "traefik.http.routers.app.entrypoints=websecure"
-      - "traefik.http.routers.app.tls.certresolver=keskonmange"
+      - "traefik.http.routers.api_nginx.rule=Host(`api.jlanglois.fr`)"
+      - "traefik.http.routers.api_nginx.entrypoints=web"
+      - "traefik.http.routers.api_nginx.entrypoints=websecure"
+      - "traefik.http.routers.api_nginx.tls.certresolver=jlanglois"
       - "traefik.docker.network=traefik"
     networks:
      - traefik
      - internal
 
-  php:
-    image: quay.io/knplabs/keskonmange-api:php-${IMAGE_TAG}
+  api_php:
+    image: jaljo/blog_api:api_php-${IMAGE_TAG}
     build:
       context: .
       dockerfile: .docker/php/Dockerfile

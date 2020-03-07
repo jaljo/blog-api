@@ -1,4 +1,4 @@
-REMOTE ?= deploy@jlanglois.fr
+REMOTE ?= jlanglois@jlanglois.fr
 REMOTE_PATH ?= ~/apps/blog_api
 STAGE ?= dev
 
