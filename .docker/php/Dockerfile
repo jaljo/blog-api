@@ -1,25 +1,30 @@
-FROM php:7.2-fpm
 
-RUN apt-get update
-RUN apt-get install -y zlib1g-dev
-RUN apt-get install -y unzip
+FROM composer:1.9.1 as composer
 
-RUN docker-php-ext-install pdo_mysql
-RUN docker-php-ext-install zip
+################################################################################
 
-RUN pecl install apcu-5.1.8
-RUN docker-php-ext-enable apcu
+FROM php:7.2-fpm as php
 
-RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
-    && php -r "if (hash_file('SHA384', 'composer-setup.php') === '93b54496392c062774670ac18b134c3b3a95e5a5e5c8f1a9f115f203b75bf9a129d5daa8ba6a13e2cc8a1da0806388a8') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;" \
-    && php composer-setup.php --filename=composer \
-    && php -r "unlink('composer-setup.php');" \
-    && mv composer /usr/local/bin/composer
+COPY --from=composer /usr/bin/composer /usr/local/bin/composer
 
-WORKDIR /usr/src/app
+RUN apt-get update \
+    && apt-get install -y \
+        zlib1g-dev \
+        unzip
 
-# hard copy files for production environment
-# these will be overidden by the 'volume' directive in the docker-compose.yml
-COPY . /usr/src/app
+RUN docker-php-ext-install pdo_mysql \
+    && docker-php-ext-install zip
 
-RUN PATH=$PATH:/usr/src/apps/vendor/bin:bin
+RUN pecl install apcu-5.1.8 \
+    && docker-php-ext-enable apcu
+
+WORKDIR /app
+
+COPY ./ /app/
+
+RUN composer install --prefer-dist --no-scripts --no-dev \
+    && composer clear-cache
+
+RUN php -d display_errors=on bin/console cache:warmup --env=prod
+
+CMD ["php-fpm"]
