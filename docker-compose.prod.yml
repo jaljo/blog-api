@@ -1,0 +1,55 @@
+version: '3.7'
+
+services:
+  api_mysql:
+    image: jaljo/blog_api:api_mysql-${IMAGE_TAG}
+    build:
+      context: .
+      dockerfile: .docker/mysql/Dockerfile
+    restart: on-failure
+    environment:
+      - MYSQL_USER=root
+      - MYSQL_ROOT_PASSWORD=
+      - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+
+    networks:
+     - internal
+
+  api_nginx:
+    image: jaljo/blog_api:api_nginx-${IMAGE_TAG}
+    build:
+      context: .
+      dockerfile: .docker/nginx/Dockerfile
+    restart: on-failure
+    depends_on:
+      - api_php
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.api_nginx.rule=Host(`api.jlanglois.fr`)"
+      - "traefik.http.routers.api_nginx.entrypoints=web"
+      - "traefik.http.routers.api_nginx.entrypoints=websecure"
+      - "traefik.http.routers.api_nginx.tls.certresolver=jlanglois"
+      - "traefik.docker.network=traefik"
+    networks:
+     - traefik
+     - internal
+
+  api_php:
+    image: jaljo/blog_api:api_php-${IMAGE_TAG}
+    build:
+      context: .
+      dockerfile: .docker/php/Dockerfile
+      target: php
+    restart: on-failure
+    env_file:
+      - .env
+    user: 1000:1000
+    networks:
+     - internal
+
+networks:
+  traefik:
+    external:
+      name: traefik
+  internal:
+    driver: bridge
