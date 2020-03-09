@@ -1,12 +1,12 @@
-get_blog_posts:
-    path: /blog/posts
-    controller: App\Controller\PostController::getBlogPosts
+list_articles:
+    path: /articles
+    controller: App\Controller\ArticleController::list
     requirements:
         method: GET
 
-get_blog_post:
-    path: /blog/posts/{seoTitle}
-    controller: App\Controller\PostController::getBlogPost
+read_article:
+    path: /articles/{slug}
+    controller: App\Controller\ArticleController::read
     requirements:
         method: GET
-        seoTitle: '[a-z\-]+'
+        slug: '[a-z\-]+'
