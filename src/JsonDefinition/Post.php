@@ -32,7 +32,7 @@ class Post
     public $dateCreation;
 
     /**
-     * @var boolean
+     * @var bool
      */
     public $draft;
 
