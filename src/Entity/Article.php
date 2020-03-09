@@ -3,43 +3,45 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use DateTimeInterface;
+use DateTimeImmutable;
 
-/**
- * @ORM\Entity(repositoryClass="App\Repository\ArticleRepository")
- */
 class Article
 {
     /**
-     * @ORM\Id()
-     * @ORM\GeneratedValue()
-     * @ORM\Column(type="integer")
+     * @var int
      */
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @var string
      */
     private $title;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @var string
      */
     private $slug;
 
     /**
-     * @ORM\Column(type="text")
+     * @var string
      */
     private $content;
 
     /**
-     * @ORM\Column(type="date_immutable")
+     * @var DateTimeInterface
      */
     private $dateCreation;
 
     /**
-     * @ORM\Column(type="boolean")
+     * @var bool
      */
     private $draft;
+
+    public function __construct()
+    {
+        $this->dateCreation = new DateTimeImmutable();
+    }
 
     public function getId(): ?int
     {
@@ -51,23 +53,9 @@ class Article
         return $this->title;
     }
 
-    public function setTitle(string $title): self
-    {
-        $this->title = $title;
-
-        return $this;
-    }
-
     public function getSlug(): ?string
     {
         return $this->slug;
-    }
-
-    public function setSlug(string $slug): self
-    {
-        $this->slug = $slug;
-
-        return $this;
     }
 
     public function getContent(): ?string
@@ -75,34 +63,13 @@ class Article
         return $this->content;
     }
 
-    public function setContent(string $content): self
-    {
-        $this->content = $content;
-
-        return $this;
-    }
-
-    public function getDateCreation(): ?\DateTimeImmutable
+    public function getDateCreation(): ?DateTimeInterface
     {
         return $this->dateCreation;
     }
 
-    public function setDateCreation(\DateTimeImmutable $dateCreation): self
-    {
-        $this->dateCreation = $dateCreation;
-
-        return $this;
-    }
-
-    public function getDraft(): ?bool
+    public function isDraft(): ?bool
     {
         return $this->draft;
-    }
-
-    public function setDraft(bool $draft): self
-    {
-        $this->draft = $draft;
-
-        return $this;
     }
 }
