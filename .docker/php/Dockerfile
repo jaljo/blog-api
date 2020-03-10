@@ -10,10 +10,13 @@ COPY --from=composer /usr/bin/composer /usr/local/bin/composer
 RUN apt-get update \
     && apt-get install -y \
         zlib1g-dev \
-        unzip
+        unzip \
+        libicu-dev \
+        g++
 
 RUN docker-php-ext-install pdo_mysql \
-    && docker-php-ext-install zip
+    && docker-php-ext-install zip \
+    && docker-php-ext-install intl
 
 RUN pecl install apcu-5.1.8 \
     && docker-php-ext-enable apcu

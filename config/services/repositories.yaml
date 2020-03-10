@@ -1,0 +1,4 @@
+services:
+    App\Application\Repository\ArticleRepository:
+        arguments:
+            - '@doctrine'
