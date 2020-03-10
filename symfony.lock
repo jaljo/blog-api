@@ -29,9 +29,6 @@
             "ref": "2ede24c63b72e96be0b28819052033f887024927"
         }
     },
-    "doctrine/doctrine-cache-bundle": {
-        "version": "1.4.0"
-    },
     "doctrine/doctrine-migrations-bundle": {
         "version": "1.2",
         "recipe": {
@@ -77,6 +74,9 @@
     "ocramius/proxy-manager": {
         "version": "2.2.3"
     },
+    "php": {
+        "version": "7.2"
+    },
     "psr/cache": {
         "version": "1.0.1"
     },
@@ -86,11 +86,11 @@
     "psr/log": {
         "version": "1.0.2"
     },
-    "psr/simple-cache": {
-        "version": "1.0.1"
-    },
     "symfony/cache": {
         "version": "v4.1.7"
+    },
+    "symfony/cache-contracts": {
+        "version": "v2.0.1"
     },
     "symfony/config": {
         "version": "v4.1.7"
@@ -116,8 +116,14 @@
     "symfony/dotenv": {
         "version": "v4.1.7"
     },
+    "symfony/error-handler": {
+        "version": "v4.4.5"
+    },
     "symfony/event-dispatcher": {
         "version": "v4.1.7"
+    },
+    "symfony/event-dispatcher-contracts": {
+        "version": "v1.1.7"
     },
     "symfony/filesystem": {
         "version": "v4.1.7"
@@ -161,11 +167,23 @@
             "ref": "fadbfe33303a76e25cb63401050439aa9b1a9c7f"
         }
     },
+    "symfony/mime": {
+        "version": "v5.0.5"
+    },
     "symfony/orm-pack": {
         "version": "v1.0.8"
     },
+    "symfony/polyfill-intl-idn": {
+        "version": "v1.14.0"
+    },
     "symfony/polyfill-mbstring": {
         "version": "v1.10.0"
+    },
+    "symfony/polyfill-php72": {
+        "version": "v1.14.0"
+    },
+    "symfony/polyfill-php73": {
+        "version": "v1.14.0"
     },
     "symfony/process": {
         "version": "v4.1.7"
@@ -184,6 +202,12 @@
     },
     "symfony/stopwatch": {
         "version": "v4.4.5"
+    },
+    "symfony/var-dumper": {
+        "version": "v4.4.5"
+    },
+    "symfony/var-exporter": {
+        "version": "v5.0.5"
     },
     "symfony/web-server-bundle": {
         "version": "3.3",
