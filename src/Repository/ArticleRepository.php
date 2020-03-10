@@ -12,4 +12,14 @@ class ArticleRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Article::class);
     }
+
+    public function findAllPublished(): iterable
+    {
+        return $this->createQueryBuilder('a')
+            ->where('a.draft = false')
+            ->orderBy('a.dateCreation', 'DESC')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 }

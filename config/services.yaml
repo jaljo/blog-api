@@ -22,3 +22,8 @@ services:
         public: true
         arguments:
             - '@App\Repository\ArticleRepository'
+
+    App\Command\Handler\ListArticles:
+        public: true
+        arguments:
+            - '@App\Repository\ArticleRepository'
