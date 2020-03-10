@@ -27,3 +27,7 @@ services:
         public: true
         arguments:
             - '@App\Repository\ArticleRepository'
+
+    App\EventListener\RequestListener:
+        tags:
+            - { name: kernel.event_listener, event: kernel.request }

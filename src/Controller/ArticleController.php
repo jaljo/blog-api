@@ -2,12 +2,15 @@
 
 namespace App\Controller;
 
-use App\Command\Bus\CommandBus;
 use App\Command as Command;
+use App\Command\Bus\CommandBus;
+use App\Form\ArticleType;
 use App\JsonDefinition\Article as ArticleDefinition;
 use App\Service\PostDAO;
 use Exception;
+use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class ArticleController implements Endpoint
@@ -17,8 +20,17 @@ class ArticleController implements Endpoint
      */
     private $bus;
 
-    public function __construct(CommandBus $bus) {
+    /**
+     * @var FormFactoryInterface
+     */
+    private $formFactory;
+
+    public function __construct(
+        CommandBus $bus,
+        FormFactoryInterface $formFactory
+    ) {
         $this->bus = $bus;
+        $this->formFactory = $formFactory;
     }
 
     // @todo add swager doc here
@@ -64,5 +76,21 @@ class ArticleController implements Endpoint
         }
 
         return new JsonResponse(new ArticleDefinition($readArticle->getResult()));
+    }
+
+    // @todo add swager doc here
+    public function create(Request $request): JsonResponse
+    {
+        $command = new Command\CreateArticle();
+
+        $form = $this->formFactory->create(ArticleType::class, $command);
+        $form->submit($request->request->all());
+
+        if (!$form->isSubmitted() || !$form->isValid()) {
+            return new JsonResponse($form, Response::HTTP_BAD_REQUEST);
+        }
+
+        var_dump($command);
+        exit;
     }
 }
