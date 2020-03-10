@@ -38,9 +38,18 @@ class Article
      */
     private $draft;
 
-    public function __construct()
+    private function __construct(string $title, string $content, string $slug)
     {
+        $this->content = $content;
         $this->dateCreation = new DateTimeImmutable();
+        $this->draft = true;
+        $this->slug = $slug;
+        $this->title = $title;
+    }
+
+    public static function write(string $title, string $content, string $slug): self
+    {
+        return new self($title, $content, $slug);
     }
 
     public function getId(): ?int

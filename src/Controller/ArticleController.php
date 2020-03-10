@@ -81,16 +81,31 @@ class ArticleController implements Endpoint
     // @todo add swager doc here
     public function create(Request $request): JsonResponse
     {
-        $command = new Command\CreateArticle();
+        $createArticle = new Command\CreateArticle();
 
-        $form = $this->formFactory->create(ArticleType::class, $command);
+        $form = $this->formFactory->create(ArticleType::class, $createArticle);
         $form->submit($request->request->all());
 
         if (!$form->isSubmitted() || !$form->isValid()) {
-            return new JsonResponse($form, Response::HTTP_BAD_REQUEST);
+            return new JsonResponse(
+                // @TODO improve this to have clearer error output
+                $form->getErrors(true)->__toString(),
+                Response::HTTP_BAD_REQUEST
+            );
         }
 
-        var_dump($command);
-        exit;
+        try {
+            $article = $this->bus->executeCommand($createArticle);
+        } catch(Exception $exception) {
+            return new JsonResponse(
+                ["error" => $exception->getMessage()],
+                Response::HTTP_INTERNAL_SERVER_ERROR
+            );
+        }
+
+        return new JsonResponse(
+            new ArticleDefinition($article->getResult()),
+            Response::HTTP_CREATED
+        );
     }
 }
