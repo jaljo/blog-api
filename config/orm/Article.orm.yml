@@ -1,0 +1,30 @@
+App\Entity\Article:
+    type: entity
+    repositoryClass: App\Symfony\Repository\ArticleRepository
+    table: article
+    uniqueConstraints:
+        unique_slug:
+            columns: [ slug ]
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
+    fields:
+        title:
+            type: string
+            length: 100
+            nullable: false
+        slug:
+            type: string
+            length: 100
+            nullable: false
+        content:
+            type: text
+            nullable: false
+        dateCreation:
+            type: datetime_immutable
+            nullable: false
+        draft:
+            type: boolean
+            nullable: false
