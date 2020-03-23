@@ -1,0 +1,7 @@
+services:
+    App\Controller\ArticleController:
+        arguments:
+            - '@App\Command\Bus\SimpleBus'
+            - '@form.factory'
+        tags:
+            - 'controller.service_arguments'

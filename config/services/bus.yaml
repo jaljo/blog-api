@@ -1,0 +1,4 @@
+services:
+    App\Command\Bus\SimpleBus:
+        arguments:
+            - '@service_container'
