@@ -2,7 +2,6 @@
 
 namespace App\Command\Bus;
 
-use App\Command\Command;
 use App\Command\CommandResult;
 use App\Command\Handler\CommandHandler;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -20,14 +19,20 @@ class SimpleBus implements CommandBus
         $this->container = $container;
     }
 
-    public function executeCommand(Command $command): CommandResult
+    /**
+     * @param mixed $command
+     */
+    public function executeCommand($command): CommandResult
     {
         $handler = $this->getHandler($command);
 
         return $handler->handle($command);
     }
 
-    private function getHandler(Command $command): CommandHandler
+    /**
+     * @param mixed $command
+     */
+    private function getHandler($command): CommandHandler
     {
         $handlerClass = preg_replace(
             '/^([\w+\\\]+)(\\\[\w]+)$/',

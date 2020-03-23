@@ -7,5 +7,8 @@ use App\Command\CommandResult;
 
 interface CommandBus
 {
-    public function executeCommand(Command $command): CommandResult;
+    /**
+     * @param mixed $command
+     */
+    public function executeCommand($command): CommandResult;
 }

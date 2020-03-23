@@ -2,7 +2,7 @@
 
 namespace App\Command;
 
-class ReadArticle implements Command
+class ReadArticle
 {
     /**
      * @var string

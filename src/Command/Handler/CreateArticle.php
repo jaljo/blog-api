@@ -2,7 +2,6 @@
 
 namespace App\Command\Handler;
 
-use App\Command\Command;
 use App\Command\CommandResult;
 use App\Command\CreateArticleResult;
 use App\Entity\Article;
@@ -23,7 +22,10 @@ class CreateArticle implements CommandHandler
         $this->manager = $manager;
     }
 
-    public function handle(Command $command): CommandResult
+    /**
+     * @param mixed $command
+     */
+    public function handle($command): CommandResult
     {
         // @TODO this should rather be injected
         $generator = new SlugGenerator();

@@ -2,7 +2,7 @@
 
 namespace App\Command;
 
-class CreateArticle implements Command
+class CreateArticle
 {
     /**
      * @var string
