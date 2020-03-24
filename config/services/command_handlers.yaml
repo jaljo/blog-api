@@ -3,16 +3,13 @@ services:
         public: true
 
     App\Command\Handler\ReadArticle:
-        public: true
         arguments:
             - '@App\Repository\ArticleRepository'
 
     App\Command\Handler\ListArticles:
-        public: true
         arguments:
             - '@App\Repository\ArticleRepository'
 
     App\Command\Handler\CreateArticle:
-        public: true
         arguments:
             - '@doctrine.orm.entity_manager'
