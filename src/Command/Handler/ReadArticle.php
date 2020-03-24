@@ -2,9 +2,9 @@
 
 namespace App\Command\Handler;
 
-use App\Command\CommandResult;
 use App\Command\ReadArticleResult;
 use App\Repository\ArticleRepository;
+use App\Entity\Article;
 
 class ReadArticle implements CommandHandler
 {
@@ -19,12 +19,10 @@ class ReadArticle implements CommandHandler
     }
 
     /**
-     * @param mixed $command
+     * {@inheritdoc}
      */
-    public function handle($command): CommandResult
+    public function handle($command): ?Article
     {
-        $article = $this->repository->findOneBySlug($command->slug);
-
-        return new ReadArticleResult($article);
+        return $this->repository->findOneBySlug($command->slug);
     }
 }

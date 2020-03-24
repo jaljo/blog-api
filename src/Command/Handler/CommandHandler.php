@@ -2,12 +2,12 @@
 
 namespace App\Command\Handler;
 
-use App\Command\CommandResult;
-
 interface CommandHandler
 {
     /**
      * @param mixed $command
+     *
+     * @return mixed
      */
-    public function handle($command): CommandResult;
+    public function handle($command);
 }

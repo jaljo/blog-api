@@ -2,7 +2,6 @@
 
 namespace App\Command\Handler;
 
-use App\Command\CommandResult;
 use App\Command\ListArticlesResult;
 use App\Repository\ArticleRepository;
 
@@ -19,12 +18,10 @@ class ListArticles implements CommandHandler
     }
 
     /**
-     * @param mixed $command
+     * {@inheritdoc}
      */
-    public function handle($command): CommandResult
+    public function handle($command): iterable
     {
-        $articles = $this->repository->findAllPublished();
-
-        return new ListArticlesResult($articles);
+        return $this->repository->findAllPublished();
     }
 }

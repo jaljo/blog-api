@@ -2,7 +2,6 @@
 
 namespace App\Command\Bus;
 
-use App\Command\CommandResult;
 use App\Command\Handler\CommandHandler;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -20,9 +19,9 @@ class SimpleBus implements CommandBus
     }
 
     /**
-     * @param mixed $command
+     * {@inheritdoc}
      */
-    public function executeCommand($command): CommandResult
+    public function executeCommand($command)
     {
         $handler = $this->getHandler($command);
 

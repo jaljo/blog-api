@@ -6,7 +6,6 @@ use App\Command as Command;
 use App\Command\Bus\CommandBus;
 use App\Form\ArticleType;
 use App\JsonDefinition\Article as ArticleDefinition;
-use App\Service\PostDAO;
 use Exception;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -37,7 +36,7 @@ class ArticleController implements Endpoint
     public function list(): JsonResponse
     {
         try {
-            $listArticles = $this->bus->executeCommand(new Command\ListArticles());
+            $articles = $this->bus->executeCommand(new Command\ListArticles());
         }
         catch (Exception $exception) {
             return new JsonResponse(
@@ -46,12 +45,12 @@ class ArticleController implements Endpoint
             );
         }
 
-        if (0 === count($listArticles->getResult())) {
+        if (0 === count($articles)) {
             return new JsonResponse([], Response::HTTP_NO_CONTENT);
         }
 
         $definitions = [];
-        foreach ($listArticles->getResult() as $article) {
+        foreach ($articles as $article) {
             $definitions[] = new ArticleDefinition($article);
         }
 
@@ -62,7 +61,7 @@ class ArticleController implements Endpoint
     public function read(string $slug): JsonResponse
     {
         try {
-            $readArticle = $this->bus->executeCommand(new Command\ReadArticle($slug));
+            $article = $this->bus->executeCommand(new Command\ReadArticle($slug));
         }
         catch (Exception $exception) {
             return new JsonResponse(
@@ -71,11 +70,11 @@ class ArticleController implements Endpoint
             );
         }
 
-        if (null === $readArticle->getResult()) {
+        if (null === $article) {
             return new JsonResponse(null, Response::HTTP_NOT_FOUND);
         }
 
-        return new JsonResponse(new ArticleDefinition($readArticle->getResult()));
+        return new JsonResponse(new ArticleDefinition($article));
     }
 
     // @todo add swager doc here
@@ -104,7 +103,7 @@ class ArticleController implements Endpoint
         }
 
         return new JsonResponse(
-            new ArticleDefinition($article->getResult()),
+            new ArticleDefinition($article),
             Response::HTTP_CREATED
         );
     }
