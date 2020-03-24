@@ -7,10 +7,15 @@ class ReadArticle
     /**
      * @var string
      */
-    public $slug;
+    private $slug;
 
     public function __construct(string $slug)
     {
         $this->slug = $slug;
+    }
+
+    public function getSlug(): string
+    {
+        return $this->slug;
     }
 }

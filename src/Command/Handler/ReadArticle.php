@@ -23,6 +23,6 @@ class ReadArticle implements CommandHandler
      */
     public function handle($command): ?Article
     {
-        return $this->repository->findOneBySlug($command->slug);
+        return $this->repository->findOneBySlug($command->getSlug());
     }
 }

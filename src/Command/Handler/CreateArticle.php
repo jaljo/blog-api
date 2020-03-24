@@ -30,9 +30,9 @@ class CreateArticle implements CommandHandler
         $generator = new SlugGenerator();
 
         $article = Article::write(
-            $command->title,
-            $command->content,
-            $generator->generate($command->title)
+            $command->getTitle(),
+            $command->getContent(),
+            $generator->generate($command->getTitle())
         );
 
         $this->manager->persist($article);
