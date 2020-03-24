@@ -13,3 +13,4 @@ services:
     App\Domain\Command\Handler\CreateArticle:
         arguments:
             - '@doctrine.orm.entity_manager'
+            - '@Ausi\SlugGenerator\SlugGenerator'

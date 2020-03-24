@@ -3,11 +3,11 @@
 namespace App\Application\Repository;
 
 use App\Domain\Article;
+use App\Domain\Repository\ArticleRepository as ArticleRepositoryInterface;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
 
-// todo this should implement an interface of the domain layer
-class ArticleRepository extends ServiceEntityRepository
+class ArticleRepository extends ServiceEntityRepository implements ArticleRepositoryInterface
 {
     public function __construct(ManagerRegistry $registry)
     {
