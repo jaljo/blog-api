@@ -4,11 +4,11 @@ services:
 
     App\Domain\Command\Handler\ReadArticle:
         arguments:
-            - '@App\Repository\ArticleRepository'
+            - '@App\Application\Repository\ArticleRepository'
 
     App\Domain\Command\Handler\ListArticles:
         arguments:
-            - '@App\Repository\ArticleRepository'
+            - '@App\Application\Repository\ArticleRepository'
 
     App\Domain\Command\Handler\CreateArticle:
         arguments:

@@ -1,6 +1,6 @@
 App\Domain\Article:
     type: entity
-    repositoryClass: App\Symfony\Repository\ArticleRepository
+    repositoryClass: App\Application\Repository\ArticleRepository
     table: article
     uniqueConstraints:
         unique_slug:

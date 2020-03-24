@@ -3,11 +3,7 @@ imports:
 
 services:
     _defaults:
-        autowire: true
-        autoconfigure: true
+        autowire: false
+        autoconfigure: false
         public: false
-
-    App\:
-        resource: '../src/*'
-        exclude: '../src/{Application,Domain,Command,Controller,EventListener,Entity,Migrations,Tests,Kernel.php}'
 

@@ -2,9 +2,9 @@
 
 namespace App\Domain\Command\Handler;
 
-use App\Domain\Command\ReadArticleResult;
-use App\Repository\ArticleRepository;
+use App\Application\Repository\ArticleRepository;
 use App\Domain\Article;
+use App\Domain\Command\ReadArticleResult;
 
 class ReadArticle implements CommandHandler
 {

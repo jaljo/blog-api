@@ -2,8 +2,8 @@
 
 namespace App\Domain\Command\Handler;
 
+use App\Application\Repository\ArticleRepository;
 use App\Domain\Command\ListArticlesResult;
-use App\Repository\ArticleRepository;
 
 class ListArticles implements CommandHandler
 {
