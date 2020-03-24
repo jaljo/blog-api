@@ -2,10 +2,10 @@
 
 namespace App\Application\Controller;
 
-use App\Command as Command;
-use App\Command\Bus\CommandBus;
 use App\Application\Form\ArticleType;
 use App\Application\JsonDefinition\Article as ArticleDefinition;
+use App\Domain\Command as Command;
+use App\Domain\Command\Bus\CommandBus;
 use Exception;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;

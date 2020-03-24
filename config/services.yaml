@@ -9,5 +9,5 @@ services:
 
     App\:
         resource: '../src/*'
-        exclude: '../src/{Application,Command,Controller,EventListener,Entity,Migrations,Tests,Kernel.php}'
+        exclude: '../src/{Application,Domain,Command,Controller,EventListener,Entity,Migrations,Tests,Kernel.php}'
 

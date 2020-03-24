@@ -1,10 +1,9 @@
 <?php
 
-namespace App\Command\Bus;
+namespace App\Domain\Command\Bus;
 
-use App\Command\Handler\CommandHandler;
+use App\Domain\Command\Handler\CommandHandler;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-
 
 class SimpleBus implements CommandBus
 {

@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Command\Handler;
+namespace App\Domain\Command\Handler;
 
-use App\Command\ReadArticleResult;
+use App\Domain\Command\ReadArticleResult;
 use App\Repository\ArticleRepository;
 use App\Domain\Article;
 
@@ -13,6 +13,7 @@ class ReadArticle implements CommandHandler
      */
     private $repository;
 
+    // @TODO this should depend on an abstraction, not a concrete implementation
     public function __construct(ArticleRepository $repository)
     {
         $this->repository = $repository;

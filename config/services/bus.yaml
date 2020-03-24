@@ -1,4 +1,4 @@
 services:
-    App\Command\Bus\SimpleBus:
+    App\Domain\Command\Bus\SimpleBus:
         arguments:
             - '@service_container'

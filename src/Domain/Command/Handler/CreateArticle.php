@@ -1,10 +1,9 @@
 <?php
 
-namespace App\Command\Handler;
+namespace App\Domain\Command\Handler;
 
-use App\Command\CreateArticleResult;
+use App\Domain\Command\CreateArticleResult;
 use App\Domain\Article;
-use App\Repository\ArticleRepository;
 use Ausi\SlugGenerator\SlugGenerator;
 use Doctrine\Common\Persistence\ObjectManager;
 

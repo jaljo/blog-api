@@ -2,14 +2,14 @@ services:
     _defaults:
         public: true
 
-    App\Command\Handler\ReadArticle:
+    App\Domain\Command\Handler\ReadArticle:
         arguments:
             - '@App\Repository\ArticleRepository'
 
-    App\Command\Handler\ListArticles:
+    App\Domain\Command\Handler\ListArticles:
         arguments:
             - '@App\Repository\ArticleRepository'
 
-    App\Command\Handler\CreateArticle:
+    App\Domain\Command\Handler\CreateArticle:
         arguments:
             - '@doctrine.orm.entity_manager'
