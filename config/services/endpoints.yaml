@@ -1,5 +1,5 @@
 services:
-    App\Controller\ArticleController:
+    App\Application\Controller\ArticleController:
         arguments:
             - '@App\Command\Bus\SimpleBus'
             - '@form.factory'

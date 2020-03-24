@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Application\Controller;
 
 use App\Command as Command;
 use App\Command\Bus\CommandBus;
