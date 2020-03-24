@@ -1,4 +1,4 @@
 services:
-    App\EventListener\RequestListener:
+    App\Application\EventListener\RequestListener:
         tags:
             - { name: kernel.event_listener, event: kernel.request }

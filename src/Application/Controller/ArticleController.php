@@ -4,8 +4,8 @@ namespace App\Application\Controller;
 
 use App\Command as Command;
 use App\Command\Bus\CommandBus;
-use App\Form\ArticleType;
-use App\JsonDefinition\Article as ArticleDefinition;
+use App\Application\Form\ArticleType;
+use App\Application\JsonDefinition\Article as ArticleDefinition;
 use Exception;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;

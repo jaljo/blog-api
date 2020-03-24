@@ -1,6 +1,6 @@
 <?php
 
-namespace App\JsonDefinition;
+namespace App\Application\JsonDefinition;
 
 use App\Entity\Article as ArticleEntity;
 use DateTime;

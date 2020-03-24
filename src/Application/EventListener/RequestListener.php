@@ -1,6 +1,6 @@
 <?php
 
-namespace App\EventListener;
+namespace App\Application\EventListener;
 
 use Symfony\Component\HttpKernel\Event\RequestEvent;
 
