@@ -1,4 +1,4 @@
-App\Entity\Article:
+App\Domain\Article:
     type: entity
     repositoryClass: App\Symfony\Repository\ArticleRepository
     table: article

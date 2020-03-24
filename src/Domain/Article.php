@@ -1,8 +1,7 @@
 <?php
 
-namespace App\Entity;
+namespace App\Domain;
 
-use Doctrine\ORM\Mapping as ORM;
 use DateTimeInterface;
 use DateTimeImmutable;
 

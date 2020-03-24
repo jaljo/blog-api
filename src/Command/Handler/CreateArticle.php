@@ -3,7 +3,7 @@
 namespace App\Command\Handler;
 
 use App\Command\CreateArticleResult;
-use App\Entity\Article;
+use App\Domain\Article;
 use App\Repository\ArticleRepository;
 use Ausi\SlugGenerator\SlugGenerator;
 use Doctrine\Common\Persistence\ObjectManager;

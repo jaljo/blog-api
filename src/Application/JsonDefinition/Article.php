@@ -2,7 +2,7 @@
 
 namespace App\Application\JsonDefinition;
 
-use App\Entity\Article as ArticleEntity;
+use App\Domain\Article as ArticleEntity;
 use DateTime;
 
 class Article

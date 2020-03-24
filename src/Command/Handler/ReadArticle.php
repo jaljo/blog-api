@@ -4,7 +4,7 @@ namespace App\Command\Handler;
 
 use App\Command\ReadArticleResult;
 use App\Repository\ArticleRepository;
-use App\Entity\Article;
+use App\Domain\Article;
 
 class ReadArticle implements CommandHandler
 {
