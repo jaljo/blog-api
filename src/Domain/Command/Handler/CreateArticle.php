@@ -3,11 +3,11 @@
 namespace App\Domain\Command\Handler;
 
 use App\Domain\Article;
-use App\Domain\Command\CreateArticleResult;
+use App\Domain\Command\CreateArticle as CreateArticleCommand;
 use Ausi\SlugGenerator\SlugGeneratorInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 
-class CreateArticle implements CommandHandler
+class CreateArticle
 {
     /**
      * @var ObjectManager
@@ -27,10 +27,7 @@ class CreateArticle implements CommandHandler
         $this->slugGenerator = $slugGenerator;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function handle($command): ?Article
+    public function __invoke(CreateArticleCommand $command): Article
     {
         $article = Article::write(
             $command->getTitle(),

@@ -3,10 +3,10 @@
 namespace App\Domain\Command\Handler;
 
 use App\Domain\Article;
-use App\Domain\Command\ReadArticleResult;
+use App\Domain\Command\ReadArticle as ReadArticleCommand;
 use App\Domain\Repository\ArticleRepository;
 
-class ReadArticle implements CommandHandler
+class ReadArticle
 {
     /**
      * @var ArticleRepository
@@ -18,10 +18,7 @@ class ReadArticle implements CommandHandler
         $this->repository = $repository;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function handle($command): ?Article
+    public function __invoke(ReadArticleCommand $command): ?Article
     {
         return $this->repository->findOneBySlug($command->getSlug());
     }

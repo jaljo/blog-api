@@ -3,18 +3,19 @@
 namespace App\Domain\Command\Bus;
 
 use App\Domain\Command\Handler\CommandHandler;
-use Symfony\Component\DependencyInjection\ContainerInterface;
+use Exception;
+use ReflectionClass;
 
 class SimpleBus implements CommandBus
 {
     /**
-     * @var ContainerInterface
+     * @var array
      */
-    private $container;
+    private $handlers;
 
-    public function __construct(ContainerInterface $container)
+    public function __construct(array $handlers)
     {
-        $this->container = $container;
+        $this->handlers = $handlers;
     }
 
     /**
@@ -24,20 +25,39 @@ class SimpleBus implements CommandBus
     {
         $handler = $this->getHandler($command);
 
-        return $handler->handle($command);
+        return $handler($command);
     }
 
     /**
      * @param mixed $command
+     *
+     * @return mixed
+     *
+     * @throws Exception
      */
-    private function getHandler($command): CommandHandler
+    private function getHandler($command)
     {
-        $handlerClass = preg_replace(
-            '/^([\w+\\\]+)(\\\[\w]+)$/',
-            '${1}\Handler${2}',
-            get_class($command)
-        );
+        $commandClass = get_class($command);
 
-        return $this->container->get($handlerClass);
+        foreach ($this->handlers as $handler) {
+            $handlerClass = get_class($handler);
+            $handlerReflection = new ReflectionClass($handlerClass);
+
+            $parameters = $handlerReflection
+                ->getmethod('__invoke')
+                ->getParameters()
+            ;
+
+            $commandType = count($parameters) >= 1
+                ? $parameters[0]->getType()->__toString()
+                : null
+            ;
+
+            if ($commandType === $commandClass) {
+                return $handler;
+            }
+        }
+
+        throw new Exception(sprintf('No handler found for %s', $commandClass));
     }
 }

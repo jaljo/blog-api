@@ -2,10 +2,10 @@
 
 namespace App\Domain\Command\Handler;
 
-use App\Domain\Command\ListArticlesResult;
+use App\Domain\Command\ListArticles as ListArticlesCommand;
 use App\Domain\Repository\ArticleRepository;
 
-class ListArticles implements CommandHandler
+class ListArticles
 {
     /**
      * @var ArticleRepository
@@ -17,10 +17,7 @@ class ListArticles implements CommandHandler
         $this->repository = $repository;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function handle($command): iterable
+    public function __invoke(ListArticlesCommand $command): iterable
     {
         return $this->repository->findAllPublished();
     }
