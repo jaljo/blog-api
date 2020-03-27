@@ -5,3 +5,4 @@ services:
                 - '@App\Domain\Command\Handler\ReadArticle'
                 - '@App\Domain\Command\Handler\ListArticles'
                 - '@App\Domain\Command\Handler\WriteArticle'
+                - '@App\Domain\Command\Handler\PublishArticle'
