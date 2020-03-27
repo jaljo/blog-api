@@ -1,0 +1,6 @@
+services:
+    App\Application\Security\TokenAuthenticator:
+        arguments:
+            - '%env(string:API_KEY)%'
+
+    App\Application\Security\UserProvider:
