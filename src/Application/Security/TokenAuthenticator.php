@@ -19,7 +19,8 @@ class TokenAuthenticator extends AbstractGuardAuthenticator
      */
     private $apiKey;
 
-    public function __construct(string $apiKey) {
+    public function __construct(string $apiKey)
+    {
         $this->apiKey = $apiKey;
     }
 
