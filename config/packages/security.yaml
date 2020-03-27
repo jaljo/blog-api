@@ -17,4 +17,4 @@ security:
 
     access_control:
         - { path: '^/', roles: IS_AUTHENTICATED_ANONYMOUSLY, methods: [GET] }
-        - { path: '^/', roles: ROLE_ADMIN, methods: [POST] }
+        - { path: '^/', roles: ROLE_ADMIN, methods: [PATCH, POST] }
