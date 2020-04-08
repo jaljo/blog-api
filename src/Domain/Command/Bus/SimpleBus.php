@@ -29,9 +29,9 @@ class SimpleBus implements CommandBus
     }
 
     /**
-     * @param mixed $command
+     * @param object $command (Mais cette annotation peut carrément virer, si on utilise un vrai type-hint ci-dessous)
      *
-     * @return mixed
+     * @return callable
      *
      * @throws Exception
      */
