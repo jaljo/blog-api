@@ -35,7 +35,7 @@ class SimpleBus implements CommandBus
      *
      * @throws Exception
      */
-    private function getHandler($command)
+    private function getHandler(object $command)
     {
         $commandClass = get_class($command);
 
