@@ -29,13 +29,9 @@ class SimpleBus implements CommandBus
     }
 
     /**
-     * @param object $command (Mais cette annotation peut carrément virer, si on utilise un vrai type-hint ci-dessous)
-     *
-     * @return callable
-     *
      * @throws Exception
      */
-    private function getHandler(object $command)
+    private function getHandler(object $command): callable
     {
         $commandClass = get_class($command);
 
