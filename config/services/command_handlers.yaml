@@ -1,0 +1,16 @@
+services:
+    _defaults:
+        public: true
+
+    App\Domain\Command\Handler\ReadArticle:
+        arguments:
+            - '@App\Application\Repository\ArticleRepository'
+
+    App\Domain\Command\Handler\ListArticles:
+        arguments:
+            - '@App\Application\Repository\ArticleRepository'
+
+    App\Domain\Command\Handler\WriteArticle:
+        arguments:
+            - '@doctrine.orm.entity_manager'
+            - '@Ausi\SlugGenerator\SlugGenerator'

@@ -1,8 +1,7 @@
 <?php
 
-namespace App\Entity;
+namespace App\Domain\Model;
 
-use Doctrine\ORM\Mapping as ORM;
 use DateTimeInterface;
 use DateTimeImmutable;
 
@@ -38,37 +37,46 @@ class Article
      */
     private $draft;
 
-    public function __construct()
+    private function __construct(string $title, string $content, string $slug)
     {
+        $this->content = $content;
         $this->dateCreation = new DateTimeImmutable();
+        $this->draft = true;
+        $this->slug = $slug;
+        $this->title = $title;
     }
 
-    public function getId(): ?int
+    public static function write(string $title, string $content, string $slug): self
+    {
+        return new self($title, $content, $slug);
+    }
+
+    public function getId(): int
     {
         return $this->id;
     }
 
-    public function getTitle(): ?string
+    public function getTitle(): string
     {
         return $this->title;
     }
 
-    public function getSlug(): ?string
+    public function getSlug(): string
     {
         return $this->slug;
     }
 
-    public function getContent(): ?string
+    public function getContent(): string
     {
         return $this->content;
     }
 
-    public function getDateCreation(): ?DateTimeInterface
+    public function getDateCreation(): DateTimeInterface
     {
         return $this->dateCreation;
     }
 
-    public function isDraft(): ?bool
+    public function isDraft(): bool
     {
         return $this->draft;
     }

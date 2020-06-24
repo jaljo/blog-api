@@ -1,0 +1,7 @@
+services:
+    App\Domain\Command\Bus\SimpleBus:
+        arguments:
+            -
+                - '@App\Domain\Command\Handler\ReadArticle'
+                - '@App\Domain\Command\Handler\ListArticles'
+                - '@App\Domain\Command\Handler\WriteArticle'

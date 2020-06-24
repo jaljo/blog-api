@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Repository;
+namespace App\Application\Repository;
 
-use App\Entity\Article;
+use App\Domain\Model\Article;
+use App\Domain\Repository\ArticleRepository as ArticleRepositoryInterface;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
 
-class ArticleRepository extends ServiceEntityRepository
+class ArticleRepository extends ServiceEntityRepository implements ArticleRepositoryInterface
 {
     public function __construct(ManagerRegistry $registry)
     {

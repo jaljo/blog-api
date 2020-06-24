@@ -1,12 +1,16 @@
 list_articles:
     path: /articles
-    controller: App\Controller\ArticleController::list
-    requirements:
-        method: GET
+    methods: [GET]
+    controller: App\Application\Controller\ArticleController::list
 
 read_article:
     path: /articles/{slug}
-    controller: App\Controller\ArticleController::read
+    methods: [GET]
+    controller: App\Application\Controller\ArticleController::read
     requirements:
-        method: GET
-        slug: '[a-z\-]+'
+        slug: '[a-z0-9\-]+'
+
+create_article:
+    path: /articles
+    methods: [POST]
+    controller: App\Application\Controller\ArticleController::create
