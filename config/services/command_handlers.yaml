@@ -12,10 +12,10 @@ services:
 
     App\Domain\Command\Handler\WriteArticle:
         arguments:
-            - '@doctrine.orm.entity_manager'
+            - '@Doctrine\ORM\EntityManagerInterface'
             - '@Ausi\SlugGenerator\SlugGenerator'
 
     App\Domain\Command\Handler\PublishArticle:
         arguments:
-            - '@doctrine.orm.entity_manager'
+            - '@Doctrine\ORM\EntityManagerInterface'
             - '@App\Application\Repository\ArticleRepository'
