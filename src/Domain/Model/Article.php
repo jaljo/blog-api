@@ -51,6 +51,13 @@ class Article
         return new self($title, $content, $slug);
     }
 
+    public function publish(): self
+    {
+        $this->draft = false;
+
+        return $this;
+    }
+
     public function getId(): int
     {
         return $this->id;

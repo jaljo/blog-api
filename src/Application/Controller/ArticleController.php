@@ -107,4 +107,20 @@ class ArticleController implements Endpoint
             Response::HTTP_CREATED
         );
     }
+
+    // @todo add swager doc here
+    public function publish(int $id): JsonResponse
+    {
+        try {
+            $article = $this->bus->executeCommand(new Command\PublishArticle($id));
+        }
+        catch (Exception $exception) {
+            return new JsonResponse(
+                ["error" => $exception->getMessage()],
+                Response::HTTP_INTERNAL_SERVER_ERROR
+            );
+        }
+
+        return new JsonResponse(new ArticleDefinition($article));
+    }
 }

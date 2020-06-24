@@ -2,6 +2,6 @@ services:
     App\Application\Controller\ArticleController:
         arguments:
             - '@App\Domain\Command\Bus\SimpleBus'
-            - '@form.factory'
+            - '@Symfony\Component\Form\FormFactoryInterface'
         tags:
             - 'controller.service_arguments'

@@ -14,3 +14,10 @@ create_article:
     path: /articles
     methods: [POST]
     controller: App\Application\Controller\ArticleController::create
+
+publish_article:
+    path: /articles/{id}/publish
+    methods: [PATCH]
+    controller: App\Application\Controller\ArticleController::publish
+    requirements:
+        id: '[\d]+'
