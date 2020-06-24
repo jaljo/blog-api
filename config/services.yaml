@@ -10,7 +10,20 @@ services:
         resource: '../src/*'
         exclude: '../src/{Entity,Migrations,Tests,Kernel.php}'
 
-    App\Controller\ArticleController:
+    App\Controller\:
+        resource: '../src/Controller'
+        tags: ['controller.service_arguments']
+
+    App\Command\Bus\SimpleBus:
+        arguments:
+            - '@service_container'
+
+    App\Command\Handler\ReadArticle:
+        public: true
+        arguments:
+            - '@App\Repository\ArticleRepository'
+
+    App\Command\Handler\ListArticles:
         public: true
         arguments:
             - '@App\Repository\ArticleRepository'
