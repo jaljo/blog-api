@@ -1,5 +1,4 @@
 framework:
-    csrf_protection: false
     secret: '%env(APP_SECRET)%'
     csrf_protection: false
 
