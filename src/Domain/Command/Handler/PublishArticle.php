@@ -2,7 +2,7 @@
 
 namespace App\Domain\Command\Handler;
 
-use App\Domain\Article;
+use App\Domain\Model\Article;
 use App\Domain\Command\PublishArticle as PublishArticleCommand;
 use App\Domain\Exception\ResourceNotFoundException;
 use App\Domain\Repository\ArticleRepository;
