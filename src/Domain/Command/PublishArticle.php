@@ -2,20 +2,22 @@
 
 namespace App\Domain\Command;
 
+use App\Domain\Model\Article;
+
 class PublishArticle
 {
     /**
-     * @var int
+     * @var Article
      */
-    private $id;
+    private $article;
 
-    public function __construct(int $id)
+    public function __construct(Article $article)
     {
-        $this->id = $id;
+        $this->article = $article;
     }
 
-    public function getId(): int
+    public function getArticle(): Article
     {
-        return $this->id;
+        return $this->article;
     }
 }

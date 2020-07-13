@@ -3,11 +3,10 @@
 namespace App\Domain\Command\Handler;
 
 use App\Domain\Model\Article;
-use App\Domain\Command\PublishArticle as PublishArticleCommand;
-use App\Domain\Exception\ResourceNotFoundException;
+use App\Domain\Command\EditArticle as EditArticleCommand;
 use Doctrine\Common\Persistence\ObjectManager;
 
-class PublishArticle
+class EditArticle
 {
     /**
      * @var ObjectManager
@@ -20,13 +19,13 @@ class PublishArticle
         $this->manager = $manager;
     }
 
-    /**
-     * @throws ResourceNotFoundException
-     */
-    public function __invoke(PublishArticleCommand $command): Article
+    public function __invoke(EditArticleCommand $command): Article
     {
         $article = $command->getArticle();
-        $article->publish();
+        $article->edit(
+            $command->getTitle(),
+            $command->getContent()
+        );
 
         $this->manager->persist($article);
         $this->manager->flush();

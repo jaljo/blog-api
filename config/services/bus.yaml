@@ -6,3 +6,4 @@ services:
                 - '@App\Domain\Command\Handler\ListArticles'
                 - '@App\Domain\Command\Handler\WriteArticle'
                 - '@App\Domain\Command\Handler\PublishArticle'
+                - '@App\Domain\Command\Handler\EditArticle'

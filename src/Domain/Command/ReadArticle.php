@@ -5,17 +5,23 @@ namespace App\Domain\Command;
 class ReadArticle
 {
     /**
-     * @var string
+     * @var int|string
      */
     private $slug;
 
-    public function __construct(string $slug)
+    /**
+     * @param int|string
+     */
+    public function __construct($id)
     {
-        $this->slug = $slug;
+        $this->id = $id;
     }
 
-    public function getSlug(): string
+    /**
+     * @return int|string
+     */
+    public function getId()
     {
-        return $this->slug;
+        return $this->id;
     }
 }

@@ -12,4 +12,6 @@ interface Endpoint
     public function read(string $slug): JsonResponse;
 
     public function create(Request $request): JsonResponse;
+
+    public function update(Request $request, int $id): JsonResponse;
 }
