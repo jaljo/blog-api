@@ -18,7 +18,9 @@ services:
     App\Domain\Command\Handler\PublishArticle:
         arguments:
             - '@Doctrine\ORM\EntityManagerInterface'
+            - '@App\Application\Repository\ArticleRepository'
 
     App\Domain\Command\Handler\EditArticle:
         arguments:
             - '@Doctrine\ORM\EntityManagerInterface'
+            - '@App\Application\Repository\ArticleRepository'

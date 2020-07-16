@@ -7,9 +7,9 @@ use App\Domain\Model\Article;
 class EditArticle
 {
     /**
-     * @var Article
+     * @var int
      */
-    private $article;
+    private $id;
 
     /**
      * @var string
@@ -23,14 +23,14 @@ class EditArticle
 
     public function __construct(Article $article)
     {
-        $this->article = $article;
+        $this->id = $article->getId();
         $this->title = $article->getTitle();
         $this->content = $article->getContent();
     }
 
-    public function getArticle(): Article
+    public function getId(): int
     {
-        return $this->article;
+        return $this->id;
     }
 
     public function getTitle(): string

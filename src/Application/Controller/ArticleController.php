@@ -141,8 +141,8 @@ class ArticleController implements Endpoint
     public function publish(int $id): JsonResponse
     {
         try {
-            $article = $this->bus->executeCommand(new Command\ReadArticle($id));
-            $this->bus->executeCommand(new Command\PublishArticle($article));
+            $publishArticle = new Command\PublishArticle($id);
+            $article = $this->bus->executeCommand($publishArticle);
         }
         catch (ResourceNotFoundException $exception) {
             return new JsonResponse(null, Response::HTTP_NOT_FOUND);
