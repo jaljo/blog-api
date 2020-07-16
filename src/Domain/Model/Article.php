@@ -51,6 +51,14 @@ class Article
         return new self($title, $content, $slug);
     }
 
+    public function edit(string $title, string $content): self
+    {
+        $this->title = $title;
+        $this->content = $content;
+
+        return $this;
+    }
+
     public function publish(): self
     {
         $this->draft = false;

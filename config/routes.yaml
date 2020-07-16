@@ -15,6 +15,13 @@ create_article:
     methods: [POST]
     controller: App\Application\Controller\ArticleController::create
 
+edit_article:
+    path: /articles/{id}
+    methods: [PATCH]
+    controller: App\Application\Controller\ArticleController::update
+    requirements:
+        id: '[\d]+'
+
 publish_article:
     path: /articles/{id}/publish
     methods: [PATCH]
